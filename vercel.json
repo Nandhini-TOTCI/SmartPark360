@@ -1,36 +1,19 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "backend/server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "admin-dashboard/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "backend/server.js"
+      "destination": "https://your-hostinger-backend-url.com/api/$1"
     },
     {
       "source": "/(.*)",
-      "destination": "/admin-dashboard/$1",
-      "continue": true
+      "destination": "/admin-dashboard/$1"
     }
   ],
-  "routes": [
+  "redirects": [
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/admin-dashboard/index.html"
+      "source": "/",
+      "destination": "/admin-dashboard/",
+      "permanent": true
     }
   ]
 }
